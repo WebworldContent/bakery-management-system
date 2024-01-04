@@ -473,7 +473,7 @@ a:focus {
   margin-top: 25px;
 }
 
-.about_section .detail-box a {
+.client_section .detail-box a {
   display: inline-block;
   padding: 10px 35px;
   background-color: #bb3d1c;
@@ -482,7 +482,7 @@ a:focus {
   margin: 25px 0 45px 0;
 }
 
-.about_section .detail-box a:hover {
+.client_section .detail-box a:hover {
   background-color: #d1441f;
 }
 
