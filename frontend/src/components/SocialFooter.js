@@ -33,7 +33,7 @@ const SocialFooter = () => {
         </div>
         <div>
           <p>
-            All rights reserved by Backery Owner. \_(*_*)_/
+            All rights reserved by Bakery Owner. \_(*_*)_/
           </p>
         </div>
       </div>

@@ -11,10 +11,10 @@ const LandingSection = () => {
             <div className="detail_box">
               <h1>
                   Welcome to <br/>
-                  Our Cake Shop
+                  Damn! Bakery
               </h1>
               <p>
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, </p>
+                Welcome to Damn! Bakery, where every bite is a flavorful rebellion against the ordinary. Indulge in our sinfully delicious treats crafted with passion and precision, redefining the art of baking. </p>
               <Link to="" className="">
                   Shop Now
               </Link>
