@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import p1 from "../assets/images/p1.png";
 import p2 from "../assets/images/p2.png";
 import p3 from "../assets/images/p3.png";
-import rightArrow from "../assets/images/right-arrow.png";
 
 const ProductSection = () => {
     return (
@@ -14,29 +13,11 @@ const ProductSection = () => {
             Our products
           </h2>
           <p>
-            There are many variations of passages of Lorem Ipsum available, but the majority have
+            Embark on a delectable journey at Damn! Bakery, where each confection is a symphony of flavors that dance on your taste buds.
           </p>
         </div>
 
         <div class="product_container">
-          <div class="box_container">
-            <div class="img-box">
-              <img src={p1} class="img1" alt="" />
-            </div>
-            <div class="box">
-              <div class="detail-box">
-                <h5>
-                  Classic Treat
-                </h5>
-                <p>
-                  There are many variations of passages of Lorem Ipsum available, butdon't look even slightly believable.
-                </p>
-                <Link to="">
-                  <img src={rightArrow} alt=""/>
-                </Link>
-              </div>
-            </div>
-          </div>
           <div class="box_container">
             <div class="img-box">
               <img src={p2} class="img1" alt=""/>
@@ -46,11 +27,9 @@ const ProductSection = () => {
                 <h5>
                   Party Special
                 </h5>
-                <p>
-                  There are many variations of passages of Lorem Ipsum available, butdon't look even slightly believable.
-                </p>
+                <p>3000 ₹</p>
                 <Link to="">
-                  <img src={rightArrow} alt=""/>
+                  Add Item
                 </Link>
               </div>
             </div>
@@ -64,11 +43,9 @@ const ProductSection = () => {
                 <h5>
                   Sweet Treat
                 </h5>
-                <p>
-                  There are many variations of passages of Lorem Ipsum available, butdon't look even slightly believable.
-                </p>
+                <p>700 ₹</p>
                 <Link to="">
-                  <img src={rightArrow} alt=""/>
+                  Add Item
                 </Link>
               </div>
             </div>
