@@ -9,7 +9,7 @@ const ProductSection = () => {
       <div class="container">
         <div class="heading_container">
           <h2>
-            Our products
+            Our Top Dishes
           </h2>
           <p>
             Embark on a delectable journey at Damn! Bakery, where each confection is a symphony of flavors that dance on your taste buds.

@@ -20,16 +20,18 @@ const HeaderSection = () => {
               <div className="d-flex ml-auto flex-column flex-lg-row align-items-center">
                 <ul className="navbar-nav  ">
                   <li className="nav-item active">
-                    <Link className="nav-link" to="index.html">Home <span className="sr-only">(current)</span></Link>
+                    <Link className="nav-link" to={'/'}>Home <span className="sr-only">(current)</span></Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="about.html"> About </Link>
+                    <Link className="nav-link" to={'/menu'}> Menu </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="product.html"> Products </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link last_link" to="contact.html"> Contact </Link>
+                    <Link className="nav-link" to={'/cart'}>
+                      <i className="fa fa-shopping-cart mr-1"></i> Cart
+                      <span className="badge badge-pill badge-danger ml-1">
+                        3
+                      </span>
+                    </Link>
                   </li>
                 </ul>
               </div>

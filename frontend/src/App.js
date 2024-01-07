@@ -1,23 +1,16 @@
 import React from "react";
-import LandingSection from "./components/LandingSection";
-import HeaderSection from "./components/HeaderSection";
-import ProductSection from "./components/ProductSection";
-import AboutSection from "./components/AboutSection";
-import ContactSection from "./components/ContactSection";
-import SocialFooter from "./components/SocialFooter";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Menu from "./pages/Menu";
+// import { lazy, Suspense } from "react";
+// import { Suspense } from "react";
 
 function App() {
   return (
-    <>
-    <div className="hero_area">
-      <HeaderSection/>
-      <LandingSection/>
-    </div>
-    <ProductSection/>
-    <AboutSection/>
-    <ContactSection/>
-    <SocialFooter/>
-    </>
+    <Routes>
+      <Route path="/" element={<Home/>} />
+      <Route path="/menu" element={<Menu/>} />
+    </Routes>
   );
 }
 

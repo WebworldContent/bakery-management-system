@@ -1,0 +1,106 @@
+/* Add this CSS to your styles or use it in your React component's styles */
+
+.price_list_area {
+  background-color: #f8f8f8;
+  padding: 50px 0;
+}
+
+.price_list_inner {
+  text-align: center;
+}
+
+.single_pest_title {
+  margin-bottom: 30px;
+}
+
+.single_pest_title h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.single_pest_title p {
+  font-size: 14px;
+  color: #777;
+}
+
+.discover_item_inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.discover_item {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.discover_item:hover {
+  transform: scale(1.05);
+}
+
+.discover_item h4 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.discover_item p {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.discover_item span {
+  color: #e44d26;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.menu-item-image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+/* Responsive styles */
+@media (min-width: 576px) {
+  .price_list_area {
+    padding: 80px 0;
+  }
+
+  .single_pest_title h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .single_pest_title p {
+    font-size: 16px;
+  }
+
+  .discover_item {
+    width: 48%;
+  }
+}
+
+@media (min-width: 768px) {
+  .discover_item {
+    width: 48%;
+  }
+}
+
+@media (min-width: 992px) {
+  .discover_item {
+    width: 48%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .discover_item {
+    width: 48%;
+  }
+}

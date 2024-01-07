@@ -1,0 +1,68 @@
+/* Banner Area css
+============================================================================================ */
+.banner_area {
+    background: url(../assets/images/banner-bg.jpg) no-repeat scroll center center;
+    background-size: cover;
+  }
+  
+  .banner_text {
+    text-align: center;
+    padding-bottom: 80px;
+  }
+  
+  .banner_text h3 {
+    color: #fff;
+    padding-top: 113px;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    font-size: 62px;
+  }
+  
+  .banner_text ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .banner_text ul li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .banner_text ul li a {
+    display: inline-block;
+    color: #fff;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    position: relative;
+    letter-spacing: .28px;
+  }
+  
+  .banner_text ul li a:before {
+    content: "\f105";
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: -15px;
+  }
+  
+  .banner_text ul li:first-child a {
+    color: #f195b2;
+  }
+  
+  .banner_text ul li:first-child a:before {
+    display: none;
+  }
+  
+  .banner_text ul li:last-child {
+    margin-right: 0px;
+  }
+  
+  /* End Banner Area css
+  ============================================================================================ */
+  /*---------------------------------------------------- */
+  
