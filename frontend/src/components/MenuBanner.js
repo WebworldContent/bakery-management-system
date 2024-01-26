@@ -9,8 +9,8 @@ const MenuBanner = () => {
           <div class="banner_text">
             <h3>Menu</h3>
             <ul>
-              <li><Link to="index.html">Home</Link></li>
-              <li><Link to="menu.html">Menu</Link></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/menu">Menu</Link></li>
             </ul>
           </div>
         </div>

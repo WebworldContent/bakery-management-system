@@ -67,6 +67,22 @@
   margin-bottom: 10px;
 }
 
+.add-cart {
+  font-size: 12px; /* Set the font size to make it small */
+  padding: 8px 12px; /* Add padding for better visual appeal */
+  background-color: #2ecc71; /* Use a beautiful green color (you can adjust the color code) */
+  color: #ffffff; /* Set text color to white for contrast */
+  border: none; /* Remove default button border */
+  border-radius: 4px; /* Add rounded corners for a modern look */
+  cursor: pointer; /* Change cursor to pointer on hover for user interaction */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect on background color change */
+}
+
+.add-cart:hover {
+  background-color: #27ae60; /* Change the background color on hover */
+}
+
+
 /* Responsive styles */
 @media (min-width: 576px) {
   .price_list_area {
@@ -83,24 +99,24 @@
   }
 
   .discover_item {
-    width: 48%;
+    width: 25%;
   }
 }
 
 @media (min-width: 768px) {
   .discover_item {
-    width: 48%;
+    width: 25%;
   }
 }
 
 @media (min-width: 992px) {
   .discover_item {
-    width: 48%;
+    width: 25%;
   }
 }
 
 @media (min-width: 1200px) {
   .discover_item {
-    width: 48%;
+    width: 25%;
   }
 }
