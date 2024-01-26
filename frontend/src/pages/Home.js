@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import HeaderSection from "../components/HeaderSection";
 import LandingSection from "../components/LandingSection";
@@ -8,13 +8,19 @@ import ContactSection from "../components/ContactSection";
 import SocialFooter from "../components/SocialFooter";
 
 const Home = () => {
+  const [refer, setRefer] = useState(null);
+
+  const getRef = (refer) => {
+    setRefer(refer)
+  }
+
   return (
       <>
       <div className="hero_area">
         <HeaderSection/>
-        <LandingSection/>
+        <LandingSection refer={refer}/>
       </div>
-      <ProductSection/>
+      <ProductSection getRef={getRef}/>
       <AboutSection/>
       <ContactSection/>
       <SocialFooter/>

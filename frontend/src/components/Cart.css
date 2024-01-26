@@ -1,0 +1,40 @@
+/* Styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20% auto;
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Other styles for your menu item and button */
+.menu-item {
+    text-align: center;
+}
+
+.menu-item-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.add-cart {
+    /* Your button styles here */
+}

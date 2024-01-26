@@ -8,7 +8,7 @@ const HeaderSection = () => {
           <nav className="navbar navbar-expand-lg custom_nav-container ">
             <Link className="navbar-brand" to="index.html">
               <span style={{fontSize: '32px'}}>
-                Damn! Bakery
+                Yumm! Bakery
               </span>
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,12 +26,14 @@ const HeaderSection = () => {
                     <Link className="nav-link" to={'/menu'}> Menu </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to={'/cart'}>
+                    {/* <Link className="nav-link" to={'/cart'}> */}
+                    <div className="nav-link" style={{cursor: 'pointer'}}>
                       <i className="fa fa-shopping-cart mr-1"></i> Cart
                       <span className="badge badge-pill badge-danger ml-1">
                         3
                       </span>
-                    </Link>
+                    </div>
+                    {/* </Link> */}
                   </li>
                 </ul>
               </div>

@@ -6,17 +6,17 @@ import locImg from "../assets/images/location.png";
 
 const ContactSection = () => {
     return (
-        <section class="contact_section layout_padding">
-        <div class="container ">
-          <div class="heading_container">
+        <section className="contact_section layout_padding">
+        <div className="container ">
+          <div className="heading_container">
             <h2>
               Contact Us
             </h2>
           </div>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8 col-lg-6 mx-auto">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 col-lg-6 mx-auto">
               <form action="">
                 <div>
                   <input type="text" placeholder="Name" />
@@ -28,9 +28,9 @@ const ContactSection = () => {
                   <input type="text" placeholder="Phone Number" />
                 </div>
                 <div>
-                  <input type="text" class="message-box" placeholder="Message" />
+                  <input type="text" className="message-box" placeholder="Message" />
                 </div>
-                <div class="d-flex justify-content-center">
+                <div className="d-flex justify-content-center">
                   <button>
                     SEND
                   </button>
@@ -40,15 +40,15 @@ const ContactSection = () => {
     
           </div>
         </div>
-        <div class="container">
-          <div class="contact_items">
+        <div className="container">
+          <div className="contact_items">
     
             <Link to="">
-              <div class="item ">
-                <div class="img-box ">
+              <div className="item ">
+                <div className="img-box ">
                   <img src={callImg} alt=""/>
                 </div>
-                <div class="detail-box">
+                <div className="detail-box">
                   <p>
                     +02 1234567890
                   </p>
@@ -56,11 +56,11 @@ const ContactSection = () => {
               </div>
             </Link>
             <Link to="">
-              <div class="item ">
-                <div class="img-box ">
+              <div className="item ">
+                <div className="img-box ">
                   <img src={mailImg} alt=""/>
                 </div>
-                <div class="detail-box">
+                <div className="detail-box">
                   <p>
                     demo@gmail.com
                   </p>
@@ -68,11 +68,11 @@ const ContactSection = () => {
               </div>
             </Link>
             <Link to="">
-              <div class="item ">
-                <div class="img-box ">
+              <div className="item ">
+                <div className="img-box ">
                   <img src={locImg} alt=""/>
                 </div>
-                <div class="detail-box">
+                <div className="detail-box">
                   <p>
                     Location
                   </p>

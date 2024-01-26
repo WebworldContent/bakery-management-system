@@ -4,9 +4,9 @@ import './MenuBanner.css';
 
 const MenuBanner = () => {
     return (
-      <section class="banner_area">
-        <div class="container">
-          <div class="banner_text">
+      <section className="banner_area">
+        <div className="container">
+          <div className="banner_text">
             <h3>Menu</h3>
             <ul>
               <li><Link to="/">Home</Link></li>

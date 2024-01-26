@@ -7,9 +7,9 @@ import instagram from "../assets/images/instagram.png";
 
 const SocialFooter = () => {
   return (
-    <section class="info_section layout_padding">
-      <div class="container">
-        <div class="info_social">
+    <section className="info_section layout_padding">
+      <div className="container">
+        <div className="info_social">
           <div>
             <Link href="">
               <img src={fb} alt=""/>
