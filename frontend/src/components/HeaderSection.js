@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Cart from "./Cart";
 
-const HeaderSection = () => {
+const HeaderSection = ({cart, cartPrice}) => {
+  const [openCart, setOpenCart] = useState(false);
+
     return (
         <header className="header_section">
         <div className="container">
@@ -27,10 +30,10 @@ const HeaderSection = () => {
                   </li>
                   <li className="nav-item">
                     {/* <Link className="nav-link" to={'/cart'}> */}
-                    <div className="nav-link" style={{cursor: 'pointer'}}>
+                    <div className="nav-link" style={{cursor: 'pointer'}} onClick={() => setOpenCart(true)}>
                       <i className="fa fa-shopping-cart mr-1"></i> Cart
                       <span className="badge badge-pill badge-danger ml-1">
-                        3
+                        {cart.length}
                       </span>
                     </div>
                     {/* </Link> */}
@@ -38,6 +41,7 @@ const HeaderSection = () => {
                 </ul>
               </div>
             </div>
+            <Cart cart={cart} cartPrice={cartPrice} showModal={openCart} closeModal={(close) => setOpenCart(close)}/>
           </nav>
         </div>
       </header>

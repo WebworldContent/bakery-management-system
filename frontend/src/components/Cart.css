@@ -12,9 +12,11 @@
 .modal-content {
     background-color: #fff;
     padding: 20px;
-    margin: 20% auto;
-    max-width: 400px;
+    margin: 10% auto;
+    max-width: 600px;
+    width: 80%;
     border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .close {
@@ -22,6 +24,8 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+    color: #333;
+    /* Change the color to match your design */
 }
 
 /* Other styles for your menu item and button */
@@ -33,8 +37,81 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
+    object-fit: cover;
+    /* Ensure images maintain aspect ratio */
 }
 
-.add-cart {
-    /* Your button styles here */
+.show {
+    display: block;
+}
+
+.cartItemList li {
+    margin: 15px 0;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartItemList li:last-child {
+    border-bottom: none;
+    /* Remove the border for the last item */
+}
+
+.cart-action {
+    margin-left: 10px;
+}
+
+.cart-action span {
+    margin: 10px;
+}
+
+/* Style the buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Style the total */
+#cartTotal {
+    font-weight: bold;
+    color: #333;
+    /* Change the color to match your design */
+}
+
+#cartTotal {
+    font-weight: bold;
+    color: #333;
+    /* You can choose a color that suits your design */
+    font-size: 1.2em;
+    /* Adjust the font size as needed */
+}
+
+.cart-total-container {
+    background-color: #f0f0f0;
+    /* Add a background color for better visibility */
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+    /* Adjust the margin as needed */
+}
+
+.cart-total-container p {
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .modal-content {
+        margin: 5%;
+        width: 90%;
+    }
 }

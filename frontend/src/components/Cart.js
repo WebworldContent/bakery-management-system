@@ -1,30 +1,29 @@
 import { React } from 'react';
 import "./Cart.css";
 
-const Cart = ({showModal, closeModal, cart}) => {
-
+const Cart = ({showModal, closeModal, cart, cartPrice}) => {
   const incrementQuantity = () => {};
 
   const decrementQuantity = () => {};
 
-  const calculateTotal = () => {};
-
   return (
     <div className={`modal ${showModal ? 'show' : ''}`}>
       <div className="modal-content">
-      <span className="close" onClick={closeModal}>&times;</span>
+      <span className="close" onClick={() => closeModal(false)}>&times;</span>
       <h2>Your Cart</h2>
-      <ul id="cartItemList">
-        {cart.map((item) => (
-          <li key={item.price}>
+      <ul className="cartItemList">
+        {cart.length > 0 ? cart.map((item) => (
+          <li key={item.id}>
             {item.name} - ${item.price.toFixed(2)}
-            <button onClick={() => incrementQuantity(item.price)}>+</button>
-            <span id={`quantity${item.price}`}>{item.quantity}</span>
-            <button onClick={() => decrementQuantity(item.price)}>-</button>
+            <span className="cart-action">
+              <button onClick={() => incrementQuantity(item.price)}>+</button>
+              <span>{item.count}</span>
+              <button onClick={() => decrementQuantity(item.price)}>-</button>
+            </span>
           </li>
-        ))}
+        )) : <p>Cart is Empty</p>}
       </ul>
-      <p>Total: <span id="cartTotal">${calculateTotal()}</span></p>
+      {cart.length > 0 && <p>Total: <span id="cartTotal">${cartPrice}</span></p>}
       </div>
     </div>
   );

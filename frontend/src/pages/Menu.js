@@ -9,7 +9,7 @@ const Menu = () => {
 
   const calculateTotalPrice = useCallback(() => {
     const price = cart.reduce((accumulator, currPrice) => accumulator + currPrice.price, 0);
-    setTotalPrice(price.toFixed(3));
+    setTotalPrice(price.toFixed(2));
   }, [cart]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Menu = () => {
     <>
       <div className="sub_page">
         <div className="hero_area">
-          <HeaderSection />
+          <HeaderSection cart={cart} cartPrice={totalPrice}/>
         </div>
       </div>
       <MenuBanner />
