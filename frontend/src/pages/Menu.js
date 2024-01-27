@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MenuBanner from "../components/MenuBanner";
 import MenuContents from "../components/MenuContents";
 import HeaderSection from "../components/HeaderSection";
@@ -6,6 +6,15 @@ import HeaderSection from "../components/HeaderSection";
 const Menu = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const calculateTotalPrice = useCallback(() => {
+    const price = cart.reduce((accumulator, currPrice) => accumulator + currPrice.price, 0);
+    setTotalPrice(price.toFixed(3));
+  }, [cart]);
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [calculateTotalPrice]);
 
   const addCartItem = (item) => {
     const foundItemIdx = cart.findIndex((cartItem) => cartItem.id === item.id);
@@ -17,6 +26,7 @@ const Menu = () => {
       updatedCart[foundItemIdx] = item;
       setCart(updatedCart);
     }
+    calculateTotalPrice();
   };
 
   return (
