@@ -5,14 +5,16 @@ import HeaderSection from "../components/HeaderSection";
 
 const Menu = () => {
   const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const addCartItem = (item) => {
     const foundItemIdx = cart.findIndex((cartItem) => cartItem.id === item.id);
-    if (-1 === foundItemIdx) {
+
+    if (foundItemIdx === -1) {
       setCart((prevItems) => [...prevItems, item]);
     } else {
       const updatedCart = [...cart];
-      updatedCart.splice(foundItemIdx, 1, item);
+      updatedCart[foundItemIdx] = item;
       setCart(updatedCart);
     }
   };

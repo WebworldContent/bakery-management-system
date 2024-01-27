@@ -35,48 +35,41 @@ const defaultMenu = [
 const MenuContents = ({ addCartItem }) => {
   const [menu, setMenu] = useState(defaultMenu);
 
-  const handleCartAddition = (item) => {
-    const indx = menu.findIndex((data) => data.id === item.id);
-    const itemCount = item.count ? (item.count + 1) : 1; 
-    const updateItem = { ...item, count: itemCount };
-    const copiedMenu = [...menu];
-    copiedMenu.splice(indx, 1, updateItem);
-    setMenu(copiedMenu);
-    addCartItem(updateItem);
-  };
+  const handlePrice = (count, price) => price * count;
 
-  const findItem = (itemId) => {
-    const indx = menu.findIndex((item) => item.id === itemId);
-    const count = menu[indx].count || 0;
-    return { indx, count };
-  };
-
-  const onDecrease = (itemId) => {
-    const { indx: matchedIndx, count: itemCount } = findItem(itemId);
+  const calculateCountUpdate = (item, calCount) => {
+    const matchedIndx =  menu.findIndex((data) => data.id === item.id);
     const updatedItem = {
-      ...menu[matchedIndx],
-      count: itemCount > 0 ? itemCount - 1 : 0,
+      ...item,
+      count: calCount,
     };
     const updateMenu = [...menu];
-    updateMenu.splice(matchedIndx, 1, updatedItem);
+    updateMenu[matchedIndx] = updatedItem;
     setMenu(updateMenu);
+    addCartItem({...updatedItem, price: handlePrice(calCount, updatedItem.price)});
   };
 
-  const onIncrease = (itemId) => {
-    const { indx: matchedIndx, count: itemCount } = findItem(itemId);
-    const updatedItem = { ...menu[matchedIndx], count: itemCount + 1 };
-    const updateMenu = [...menu];
-    updateMenu.splice(matchedIndx, 1, updatedItem);
-    setMenu(updateMenu);
+  const onDecrease = (item) => {
+    const { count: itemCount } = item;
+    calculateCountUpdate(item, itemCount > 0 ? (itemCount - 1) : 0);
+  };
+
+  const onIncrease = (item) => {
+    const { count: itemCount } = item;
+    calculateCountUpdate(item, itemCount ? (itemCount + 1) : 1 );
+  };
+
+  const addToCart = (item) => {
+    onIncrease(item)
   };
 
   const itemInput = (item) => {
-    const {id, count} = item;
+    const {count} = item;
     return (
       <div className="number-input">
-        <button onClick={() => onDecrease(id)}>-</button>
+        <button onClick={() => onDecrease(item)}>-</button>
         <input type="number" value={count || 0} readOnly />
-        <button onClick={() => onIncrease(id)}>+</button>
+        <button onClick={() => onIncrease(item)}>+</button>
       </div>
     );
   };
@@ -105,7 +98,7 @@ const MenuContents = ({ addCartItem }) => {
                     <p>
                       <button
                         className="add-cart"
-                        onClick={() => handleCartAddition(item)}
+                        onClick={() => addToCart(item)}
                       >
                         Add
                       </button>
