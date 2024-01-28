@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
-import p2 from "../assets/images/p2.png";
-import p3 from "../assets/images/p3.png";
+import p2 from "../../assets/images/p2.png";
+import p3 from "../../assets/images/p3.png";
 
 const ProductSection = ({getRef}) => {
   const menuRef = useRef();

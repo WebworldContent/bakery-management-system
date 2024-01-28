@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 
-const HeaderSection = ({cart, cartPrice}) => {
+const HeaderSection = ({cart=[], cartPrice=0}) => {
   const [openCart, setOpenCart] = useState(false);
 
     return (

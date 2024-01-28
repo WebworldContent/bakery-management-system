@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import MenuBanner from "../components/MenuBanner";
-import MenuContents from "../components/MenuContents";
-import HeaderSection from "../components/HeaderSection";
+import MenuBanner from "../components/frontComponents/MenuBanner";
+import MenuContents from "../components/frontComponents/MenuContents";
+import HeaderSection from "../components/frontComponents/HeaderSection";
 
 const Menu = () => {
   const [cart, setCart] = useState([]);

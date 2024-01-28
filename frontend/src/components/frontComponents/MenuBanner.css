@@ -1,7 +1,7 @@
 /* Banner Area css
 ============================================================================================ */
 .banner_area {
-    background: url(../assets/images/banner-bg.jpg) no-repeat scroll center center;
+    background: url(../../assets/images/banner-bg.jpg) no-repeat scroll center center;
     background-size: cover;
   }
   

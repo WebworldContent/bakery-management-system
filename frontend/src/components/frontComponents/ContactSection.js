@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import callImg from "../assets/images/call.png";
-import mailImg from "../assets/images/mail.png";
-import locImg from "../assets/images/location.png";
+import callImg from "../../assets/images/call.png";
+import mailImg from "../../assets/images/mail.png";
+import locImg from "../../assets/images/location.png";
 
 const ContactSection = () => {
     return (

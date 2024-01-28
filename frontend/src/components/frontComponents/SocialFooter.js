@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import fb from "../assets/images/fb.png";
-import twitter from "../assets/images/twitter.png";
-import linkedin from "../assets/images/linkedin.png";
-import instagram from "../assets/images/instagram.png";
+import fb from "../../assets/images/fb.png";
+import twitter from "../../assets/images/twitter.png";
+import linkedin from "../../assets/images/linkedin.png";
+import instagram from "../../assets/images/instagram.png";
 
 const SocialFooter = () => {
   return (

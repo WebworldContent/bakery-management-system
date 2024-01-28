@@ -1,16 +1,21 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Menu from "./pages/Menu";
-// import { lazy, Suspense } from "react";
-// import { Suspense } from "react";
+
+const Home = lazy(() => import('./pages/Home'));
+const Menu = lazy(() => import ('./pages/Menu'));
+const Admin = lazy(() => import('./pages/Admin'));
+
+const loading = () => <p>Loading...</p>
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home/>} />
-      <Route path="/menu" element={<Menu/>} />
-    </Routes>
+    <Suspense fallback={loading}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/admin" element={<Admin/>} />
+      </Routes>
+    </Suspense>
   );
 }
 

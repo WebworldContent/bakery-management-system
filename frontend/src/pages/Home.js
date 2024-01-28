@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import HeaderSection from "../components/HeaderSection";
-import LandingSection from "../components/LandingSection";
-import ProductSection from "../components/ProductSection";
-import AboutSection from "../components/AboutSection";
-import ContactSection from "../components/ContactSection";
-import SocialFooter from "../components/SocialFooter";
+import HeaderSection from "../components/frontComponents/HeaderSection";
+import LandingSection from "../components/frontComponents/LandingSection";
+import ProductSection from "../components/frontComponents/ProductSection";
+import AboutSection from "../components/frontComponents/AboutSection";
+import ContactSection from "../components/frontComponents/ContactSection";
+import SocialFooter from "../components/frontComponents/SocialFooter";
 
 const Home = () => {
   const [refer, setRefer] = useState(null);

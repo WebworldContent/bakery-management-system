@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import cookImg from "../assets/images/about-img.png";
+import cookImg from "../../assets/images/about-img.png";
 
 const LandingSection = ({refer}) => {
 
