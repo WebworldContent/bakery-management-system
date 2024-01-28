@@ -1,9 +1,9 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ handleSideNav }) => {
   return (
     <header>
-      <div className="burger-menu" onclick="toggleMenu()">
+      <div className="burger-menu" onClick={() => handleSideNav(true)}>
         &#9776;
       </div>
       <h1>Bakery Admin Panel</h1>

@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SideNav = () => {
+const SideNav = ({ isOpen, handleSideNav }) => {
   return (
-    <nav id="sideNav">
-      <Link to="" >Dashboard</Link>
-      <Link href="" class="active">
+    <nav id="sidenav" className={isOpen ? "active" : ""}>
+      <span className="close-btn" onClick={() => handleSideNav(false)}>
+        x
+      </span>
+      <Link to="">Dashboard</Link>
+      <Link to="" class="active">
         User Form
       </Link>
-      <Link href="">Orders</Link>
-      <Link href="">Growth Chart</Link>
+      <Link to="">Orders</Link>
+      <Link to="">Growth Chart</Link>
     </nav>
   );
 };

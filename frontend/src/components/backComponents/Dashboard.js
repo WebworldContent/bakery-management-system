@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import "./Dashboard.css";
 import Header from "./Header";
@@ -8,17 +8,23 @@ import Orders from "./Orders";
 import Chart from "./Chat";
 
 const Dashboard = () => {
-    return (
-        <>
-        <Header />
-        <SideNav />
-        <main>
-            <Chart />
-            <Form />
-            <Orders />
-        </main>
-        </>
-    );
+  const [isSideNavOpen, setisSideNavOpen] = useState(false);
+
+  const handleSideNav = (isOpen) => {
+    setisSideNavOpen(isOpen);
+  };
+
+  return (
+    <>
+      <Header handleSideNav={handleSideNav} />
+      <SideNav isOpen={isSideNavOpen} handleSideNav={handleSideNav} />
+      <main className={isSideNavOpen ? "active" : ""}>
+        <Chart />
+        <Form />
+        <Orders />
+      </main>
+    </>
+  );
 };
 
 export default Dashboard;
