@@ -1,0 +1,41 @@
+body {
+    background-color: #fb8263;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.error-message {
+    color: #333;
+}
+
+.error-message h1 {
+    font-size: 8em;
+    margin: 0;
+    color: #e74c3c;
+}
+
+.error-message p {
+    font-size: 1.2em;
+}
+
+.error-message a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.error-message a:hover {
+    background-color: #2980b9;
+}
