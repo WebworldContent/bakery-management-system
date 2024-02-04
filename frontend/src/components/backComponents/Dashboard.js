@@ -6,6 +6,7 @@ import SideNav from "./SideNav";
 import Form from "./Form";
 import Orders from "./Orders";
 import Chart from "./Chat";
+import ItemsTable from "./ItemsTable";
 
 const Dashboard = () => {
   const [isSideNavOpen, setisSideNavOpen] = useState(false);
@@ -21,6 +22,7 @@ const Dashboard = () => {
       <main className={isSideNavOpen ? "active" : ""}>
         <Chart />
         <Form />
+        <ItemsTable />
         <Orders />
       </main>
     </>

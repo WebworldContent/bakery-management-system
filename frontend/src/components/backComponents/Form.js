@@ -3,13 +3,13 @@ import "./Form.css";
 import { addMenu } from "./services/menuService";
 
 const Form = () => {
-  const [menu, setMenu] = useState({});
+  const [item, setItem] = useState({});
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await addMenu(menu);
-      console.log(response);
+      await addMenu(item);
+      setItem({});
     } catch(err) {
       console.log(err);
     }
@@ -17,7 +17,7 @@ const Form = () => {
 
   const onChange = (event) => {
     const { name, value } = event.target;
-    setMenu((menu) => ({ ...menu, [name]: value }));
+    setItem((item) => ({ ...item, [name]: value }));
   };
 
   return (
@@ -38,13 +38,14 @@ const Form = () => {
         </div>
 
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" onChange={onChange} required />
+        <input type="text" id="name" name="name" value={item.name || ''} onChange={onChange} required />
 
-        <label for="price">Price</label>
+        <label for="price">Price (₹)</label>
         <input
           type="number"
           id="price"
           name="price"
+          value={item.price || ''}
           min="0"
           step="0.01"
           onChange={onChange}
@@ -55,6 +56,7 @@ const Form = () => {
         <textarea
           id="description"
           name="description"
+          value={item.description || ''}
           onChange={onChange}
           required
         ></textarea>

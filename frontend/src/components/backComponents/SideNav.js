@@ -8,7 +8,7 @@ const SideNav = ({ isOpen, handleSideNav }) => {
         x
       </span>
       <Link to="">Dashboard</Link>
-      <Link to="" class="active">
+      <Link to="" className="active">
         User Form
       </Link>
       <Link to="">Orders</Link>

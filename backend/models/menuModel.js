@@ -1,4 +1,4 @@
-import conn from "../config/db";
+import conn from "../config/db.js";
 
 const createData = async (data) => {
   const { name, price, description } = data;
@@ -10,7 +10,20 @@ const createData = async (data) => {
     );
   } catch (err) {
     console.log("Error occure in while querying... ", err);
+    throw new Error(err);
   }
 };
 
-export { createData };
+const fetchData = async () => {
+  try {
+    const [rows, field] = await conn(
+      async (connection) => await connection.execute(`select * from menu`)
+    );
+    return rows;
+  } catch (err) {
+    console.log("Error occure in while querying... ", err);
+    throw new Error(err);
+  }
+};
+
+export { createData, fetchData };

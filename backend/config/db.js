@@ -1,18 +1,25 @@
-import mysql from 'mysql2/promise';
-import dbConfig from "./dbConfig";
+import mysql from 'mysql2/promise.js';
+import dbConfig from "./dbConfig.js";
 
 const pool = mysql.createPool(dbConfig);
 
 const conn = async (callback) => {
+    let connection;
     try {
-        const conn = await pool.getConnection();
-        console.log('Connected to Mysql Server DB');
+        connection = await pool.getConnection();
+        console.log('Connected to MySQL Server DB');
 
-        callback(conn);
+        return await callback(connection);
 
-        conn.release();
-    } catch(err) {
-        console.log('Error connecting to mysql server: ', err);
+    } catch (err) {
+        console.error('Error executing with MySQL connection: ', err);
+        throw err;
+    } finally {
+        if (connection) {
+            connection.release();
+            console.log('Connection released');
+        }
     }
 };
+
 export default conn;

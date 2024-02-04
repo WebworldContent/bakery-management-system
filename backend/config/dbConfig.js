@@ -1,11 +1,8 @@
 const dbConfig = {
-  host: 'localhost',
-  user: 'root',
+  host: '127.0.0.1',
+  user: 'test',
   password: 'password',
-  database: 'bakery',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
+  database: 'bakery'
 };
 
 export default dbConfig;

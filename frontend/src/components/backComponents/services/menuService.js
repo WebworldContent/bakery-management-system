@@ -2,13 +2,22 @@ import axios from "axios";
 
 const addMenu = async (data) => {
   try {
-    const response = await axios.post("http://localhost:3001/admin/addMenu", {
+    return await axios.post("http://localhost:3001/admin/addMenu", {
       ...data,
     });
-    return response;
   } catch (err) {
     throw new Error("Error adding menu ", err);
   }
 };
 
-export { addMenu };
+const getMenu = async () => {
+  try {
+    const { data } = await axios.get("http://localhost:3001/admin/getMenu");
+    console.log(data);
+    return data;
+  } catch (err) {
+    throw new Error("Error fetching menu ", err);
+  }
+};
+
+export { addMenu, getMenu };
