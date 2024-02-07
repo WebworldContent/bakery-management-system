@@ -4,15 +4,18 @@
     margin-bottom: 20px;
 }
 
+tbody {
+    max-height: 300px;
+    overflow-y: auto;
+    display: contents;
+}
+
 th,
 td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    width: 25%;
-    /* Equal spacing for each column */
-    box-sizing: border-box;
-    /* Include padding and border in the element's total width and height */
+    box-sizing: border-box; /* Adjusted box-sizing property */
 }
 
 th {
@@ -20,7 +23,7 @@ th {
 }
 
 tr:hover {
-    background-color: #f37a59;
+    background-color: #fb8263;
 }
 
 /* Alternating row colors */
@@ -28,35 +31,12 @@ tr:nth-child(even) {
     background-color: #dfdfdf;
 }
 
-/* Pagination styles (if applicable) */
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination a {
-    padding: 8px 12px;
-    margin: 0 5px;
-    text-decoration: none;
-    color: #333;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.pagination a:hover {
-    background-color: #ddd;
-}
-
 /* Responsive design */
 @media (max-width: 600px) {
-
     th,
     td {
         font-size: 14px;
-        width: 100%;
-        /* Full width for each column on smaller screens */
+        width: auto; /* Set width to auto for better responsiveness */
         display: block;
-        /* Stack columns vertically */
     }
 }

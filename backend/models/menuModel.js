@@ -17,7 +17,7 @@ const createData = async (data) => {
 const fetchData = async () => {
   try {
     const [rows, field] = await conn(
-      async (connection) => await connection.execute(`select * from menu`)
+      async (connection) => await connection.execute(`select * from menu order by id desc`)
     );
     return rows;
   } catch (err) {

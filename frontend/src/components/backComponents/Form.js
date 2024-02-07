@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./Form.css";
 import { addMenu } from "./services/menuService";
+import "./Form.css";
 
-const Form = () => {
+const Form = ({setIsItemAdded}) => {
   const [item, setItem] = useState({});
 
   const handleSubmit = async (event) => {
@@ -10,6 +10,7 @@ const Form = () => {
     try {
       await addMenu(item);
       setItem({});
+      setIsItemAdded(true);
     } catch(err) {
       console.log(err);
     }

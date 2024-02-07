@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getMenu } from "./services/menuService";
+import './ItemsTable.css';
 
-const ItemsTable = () => {
+const ItemsTable = ({isItemAdded}) => {
   const [menu, setMenu] = useState([]);
 
   useEffect(() => {
@@ -10,7 +11,7 @@ const ItemsTable = () => {
       setMenu(data);
     };
     fetchData();
-  }, []);
+  }, [isItemAdded]);
 
   return (
     <section>
@@ -26,9 +27,9 @@ const ItemsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {menu.length > 0 && menu.map((data) => (
+            {menu.length > 0 && menu.map((data, indx) => (
               <tr key={data.id}>
-                <td>{data.id}</td>
+                <td>{indx+1}</td>
                 <td>{data.name}</td>
                 <td>{data.price}</td>
                 <td>{data.description}</td>

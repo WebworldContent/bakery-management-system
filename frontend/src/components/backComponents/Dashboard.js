@@ -10,6 +10,7 @@ import ItemsTable from "./ItemsTable";
 
 const Dashboard = () => {
   const [isSideNavOpen, setisSideNavOpen] = useState(false);
+  const [isItemAdded, setIsItemAdded] = useState(false);
 
   const handleSideNav = (isOpen) => {
     setisSideNavOpen(isOpen);
@@ -21,8 +22,8 @@ const Dashboard = () => {
       <SideNav isOpen={isSideNavOpen} handleSideNav={handleSideNav} />
       <main className={isSideNavOpen ? "active" : ""}>
         <Chart />
-        <Form />
-        <ItemsTable />
+        <Form setIsItemAdded={setIsItemAdded}/>
+        <ItemsTable isItemAdded={isItemAdded} />
         <Orders />
       </main>
     </>
