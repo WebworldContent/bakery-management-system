@@ -10,20 +10,47 @@ const createData = async (data) => {
     );
   } catch (err) {
     console.log("Error occure in while querying... ", err);
-    throw new Error(err);
+    throw err;
   }
 };
 
 const fetchData = async () => {
   try {
     const [rows, field] = await conn(
-      async (connection) => await connection.execute(`select * from menu order by id desc`)
+      async (connection) =>
+        await connection.execute(`select * from menu order by id desc`)
     );
     return rows;
   } catch (err) {
     console.log("Error occure in while querying... ", err);
-    throw new Error(err);
+    throw err;
   }
 };
 
-export { createData, fetchData };
+const updateData = async ({ name, description, price, itemId }) => {
+  try {
+    return await conn(
+      async (connection) =>
+        await connection.execute(
+          `update menu set name='${name}', description='${description}', price=${price} where id=${itemId}`
+        )
+    );
+  } catch (err) {
+    console.log("Error occure in while querying... ", err);
+    throw err;
+  }
+};
+
+const deleteData = async ({ itemId }) => {
+  try {
+    return await conn(
+      async (connection) =>
+        await connection.execute(`delete from menu where id=${itemId}`)
+    );
+  } catch (err) {
+    console.log("Error occure in while querying... ", err);
+    throw err;
+  }
+};
+
+export { createData, fetchData, updateData, deleteData };
