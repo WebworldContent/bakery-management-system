@@ -20,6 +20,16 @@ const getMenu = async () => {
   }
 };
 
+const getItem = async (id) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/admin/getMenu/${id}`);
+    console.log(data);
+    return data;
+  } catch (err) {
+    throw new Error("Error fetching item ", err);
+  }
+};
+
 const updateMenu = async (data) => {
   try {
     const {name, description, price, id: itemId} = data
@@ -42,4 +52,4 @@ const deleteMenu = async (data) => {
   }
 };
 
-export { addMenu, getMenu, updateMenu, deleteMenu };
+export { addMenu, getMenu, updateMenu, deleteMenu, getItem };

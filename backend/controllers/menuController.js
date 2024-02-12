@@ -3,6 +3,7 @@ import {
   fetchData,
   updateData,
   deleteData,
+  fetchOneData,
 } from "../models/menuModel.js";
 
 const addMenu = async (req, res) => {
@@ -11,7 +12,11 @@ const addMenu = async (req, res) => {
     await createData(data);
     res
       .status(200)
-      .send({ status: "success", msg: "menu item added successfully", info: "added" });
+      .send({
+        status: "success",
+        msg: "menu item added successfully",
+        info: "added",
+      });
   } catch (err) {
     console.log(err);
     res.status(500).send({ status: "fail" });
@@ -28,6 +33,17 @@ const getMenu = async (req, res) => {
   }
 };
 
+const getItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const response = await fetchOneData(id);
+    res.status(200).send({ status: "success", data: response });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ status: "fail" });
+  }
+};
+
 const updateMenu = async (req, res) => {
   try {
     const { itemId } = req.params;
@@ -35,7 +51,11 @@ const updateMenu = async (req, res) => {
     await updateData({ name, description, price, itemId });
     res
       .status(200)
-      .send({ status: "success", msg: "menu item updateed successfully", info: "updated" });
+      .send({
+        status: "success",
+        msg: "menu item updateed successfully",
+        info: "updated",
+      });
   } catch (err) {
     console.log(err);
     res.status(500).send({ status: "fail" });
@@ -48,11 +68,15 @@ const deleteMenu = async (req, res) => {
     await deleteData({ itemId });
     res
       .status(200)
-      .send({ status: "success", msg: "menu item deleted successfully", info: "deleted" });
+      .send({
+        status: "success",
+        msg: "menu item deleted successfully",
+        info: "deleted",
+      });
   } catch (err) {
     console.log(err);
     res.status(500).send({ status: "fail" });
   }
 };
 
-export { addMenu, getMenu, updateMenu, deleteMenu };
+export { addMenu, getMenu, updateMenu, deleteMenu, getItem };

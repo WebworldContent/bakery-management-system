@@ -27,6 +27,19 @@ const fetchData = async () => {
   }
 };
 
+const fetchOneData = async (id) => {
+  try {
+    const [rows, field] = await conn(
+      async (connection) =>
+        await connection.execute(`select * from menu where id=${id}`)
+    );
+    return rows;
+  } catch (err) {
+    console.log("Error occure in while querying... ", err);
+    throw err;
+  }
+};
+
 const updateData = async ({ name, description, price, itemId }) => {
   try {
     return await conn(
@@ -53,4 +66,4 @@ const deleteData = async ({ itemId }) => {
   }
 };
 
-export { createData, fetchData, updateData, deleteData };
+export { createData, fetchData, updateData, deleteData, fetchOneData };
