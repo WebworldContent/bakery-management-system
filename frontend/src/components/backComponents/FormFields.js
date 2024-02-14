@@ -1,4 +1,14 @@
 import React from "react";
+import { IKContext, IKUpload } from 'imagekitio-react';
+import { authenticator, publicKey, urlEndpoint } from "./services/imageAuth";
+
+const onError = err => {
+  console.log("Error", err);
+};
+
+const onSuccess = res => {
+  console.log("Success", res);
+};
 
 const FormFields = ({item, onChange}) => {
   return (
@@ -7,13 +17,17 @@ const FormFields = ({item, onChange}) => {
         Upload Image
       </label>
       <div className="file-input-container">
-        <input
-          type="file"
-          id="image"
-          name="image"
-          className="file-input"
-          accept="image/*"
+      <IKContext
+        urlEndpoint={urlEndpoint}
+        publicKey={publicKey}
+        authenticator={authenticator}
+      >
+        <IKUpload
+          fileName="test-upload.png"
+          onError={onError}
+          onSuccess={onSuccess}
         />
+      </IKContext>
       </div>
 
       <label for="name">Name</label>

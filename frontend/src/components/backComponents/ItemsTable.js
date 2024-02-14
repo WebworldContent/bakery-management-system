@@ -6,13 +6,22 @@ const DELETED = "deleted";
 
 const ItemsTable = ({ updateItemInfo, setIsModalOpen, notify, setNotify }) => {
   const [menu, setMenu] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({});
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await getMenu();
-      setMenu(data);
-    };
-    fetchData();
+    setIsLoading(true);
+    try {
+      (async () => {
+        const { data } = await getMenu();
+        setMenu(data);
+      })();
+    } catch (err) {
+      console.log(err);
+      setError((preError) => ({ ...preError, msg: err.message }));
+    } finally {
+      setIsLoading(false);
+    }
   }, [notify]);
 
   const onUpdate = async (itemId) => {
@@ -27,9 +36,13 @@ const ItemsTable = ({ updateItemInfo, setIsModalOpen, notify, setNotify }) => {
       setNotify(DELETED);
     } catch (err) {
       console.log(err);
-      setNotify('error');
+      setNotify("error");
     }
   };
+
+  if (!!error.msg) {
+    return <h2> Something Went Wrong </h2>;
+  }
 
   return (
     <>
@@ -46,7 +59,9 @@ const ItemsTable = ({ updateItemInfo, setIsModalOpen, notify, setNotify }) => {
               </tr>
             </thead>
             <tbody>
-              {menu.length > 0 &&
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
                 menu.map((data, indx) => (
                   <tr key={data.id}>
                     <td>{indx + 1}</td>
@@ -58,7 +73,8 @@ const ItemsTable = ({ updateItemInfo, setIsModalOpen, notify, setNotify }) => {
                       <button onClick={() => onDelete(data)}>Delete</button>
                     </td>
                   </tr>
-                ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>

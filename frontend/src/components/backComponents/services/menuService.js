@@ -13,7 +13,6 @@ const addMenu = async (data) => {
 const getMenu = async () => {
   try {
     const { data } = await axios.get("http://localhost:3001/admin/getMenu");
-    console.log(data);
     return data;
   } catch (err) {
     throw new Error("Error fetching menu ", err);
@@ -23,7 +22,6 @@ const getMenu = async () => {
 const getItem = async (id) => {
   try {
     const { data } = await axios.get(`http://localhost:3001/admin/getMenu/${id}`);
-    console.log(data);
     return data;
   } catch (err) {
     throw new Error("Error fetching item ", err);
