@@ -1,36 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getMenu, deleteMenu } from "./services/menuService";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./ItemsTable.css";
 
 const DELETED = "deleted";
-const UPDATED = "updated";
-const ADDED = "added";
 
-const ItemsTable = ({ updateItemInfo, setIsModalOpen }) => {
+const ItemsTable = ({ updateItemInfo, setIsModalOpen, notify, setNotify }) => {
   const [menu, setMenu] = useState([]);
-  const [notify, setNotify] = useState(""); //added|updated|deleted
-
-  const snackbarNote = useCallback(() => {
-    switch (notify) {
-      case DELETED: {
-        toast.success("Item deleted successfully");
-        break;
-      }
-      case UPDATED: {
-        toast.success("Item updated successfully");
-        break;
-      }
-      case ADDED: {
-        toast.success("Item added successfully");
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-  }, [notify]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,10 +13,7 @@ const ItemsTable = ({ updateItemInfo, setIsModalOpen }) => {
       setMenu(data);
     };
     fetchData();
-    if (!!notify) {
-      snackbarNote();
-    }
-  }, [notify, snackbarNote]);
+  }, [notify]);
 
   const onUpdate = async (itemId) => {
     updateItemInfo(itemId);
@@ -55,13 +27,12 @@ const ItemsTable = ({ updateItemInfo, setIsModalOpen }) => {
       setNotify(DELETED);
     } catch (err) {
       console.log(err);
-      toast.error("Someting went wrong, please try again later");
+      setNotify('error');
     }
   };
 
   return (
     <>
-      <ToastContainer autoClose={5000} position="top-center" closeOnClick />
       <section>
         <div style={{ overflowX: "auto" }}>
           <table className="table">

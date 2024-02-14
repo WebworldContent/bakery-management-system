@@ -3,7 +3,7 @@ import "./FormModal.css";
 import FormFields from "./FormFields";
 import { updateMenu, getItem } from "./services/menuService";
 
-const FormModal = ({ isModalOpen, setIsModalOpen, itemId }) => {
+const FormModal = ({ isModalOpen, setIsModalOpen, itemId, setNotify }) => {
   const [item, setItem] = useState({});
 
   useEffect(() => {
@@ -22,8 +22,10 @@ const FormModal = ({ isModalOpen, setIsModalOpen, itemId }) => {
       await updateMenu(item);
       setItem({});
       setIsModalOpen(false);
+      setNotify('updated');
     } catch (err) {
       console.log(err);
+      setNotify('error');
     }
   };
 

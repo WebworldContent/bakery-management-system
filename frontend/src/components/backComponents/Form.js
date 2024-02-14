@@ -3,7 +3,7 @@ import { addMenu } from "./services/menuService";
 import "./Form.css";
 import FormFields from "./FormFields";
 
-const Form = () => {
+const Form = ({ setNotify }) => {
   const [item, setItem] = useState({});
 
   const handleSubmit = async (event) => {
@@ -11,8 +11,10 @@ const Form = () => {
     try {
       await addMenu(item);
       setItem({});
+      setNotify('added');
     } catch (err) {
       console.log(err);
+      setNotify('error');
     }
   };
 
