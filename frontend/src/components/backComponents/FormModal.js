@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import "./FormModal.css";
 import FormFields from "./FormFields";
-import { updateMenu, getItem } from "./services/menuService";
+import { updateMenu, getItem } from "../services/menuService";
 
 const FormModal = ({ isModalOpen, setIsModalOpen, itemId, setNotify }) => {
   const [item, setItem] = useState({});

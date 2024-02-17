@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getMenu, deleteMenu } from "./services/menuService";
+import { getMenu, deleteMenu } from "../services/menuService";
 import "./ItemsTable.css";
 
 const DELETED = "deleted";
@@ -55,6 +55,7 @@ const ItemsTable = ({ updateItemInfo, setIsModalOpen, notify, setNotify }) => {
                 <th>Name</th>
                 <th>price</th>
                 <th>Description</th>
+                <th>Image</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -68,6 +69,7 @@ const ItemsTable = ({ updateItemInfo, setIsModalOpen, notify, setNotify }) => {
                     <td>{data.name}</td>
                     <td>{data.price}</td>
                     <td>{data.description}</td>
+                    <td><img src={data.image} alt={data.name} style={{width: '50px', height: '50px'}} /></td>
                     <td>
                       <button onClick={() => onUpdate(data.id)}>Edit</button>
                       <button onClick={() => onDelete(data)}>Delete</button>

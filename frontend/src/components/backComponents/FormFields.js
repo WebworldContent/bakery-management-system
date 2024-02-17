@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IKContext, IKUpload } from 'imagekitio-react';
-import { authenticator, publicKey, urlEndpoint } from "./services/imageAuth";
+import { authenticator, publicKey, urlEndpoint } from "../services/imageAuth";
 
 const FormFields = ({item, onChange, onImageSuccess, onImageError, onImageProgress}) => {
   const [imageUploaded, setImageUploaded] = useState(false);

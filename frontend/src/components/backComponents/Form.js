@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { addMenu } from "./services/menuService";
+import { addMenu } from "../services/menuService";
 import "./Form.css";
 import FormFields from "./FormFields";
 

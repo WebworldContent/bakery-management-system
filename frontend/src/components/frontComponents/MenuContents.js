@@ -1,44 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MenuContents.css";
-
-const defaultMenu = [
-  {
-    id: 1,
-    name: "Cup Cake",
-    img: "https://via.placeholder.com/120",
-    discription: "Chocolate puding, vanilla, fruite rasberry jam evporate milk",
-    price: 10.99,
-  },
-  {
-    id: 2,
-    name: "Special Cake",
-    img: "https://via.placeholder.com/120",
-    discription: "Chocolate puding, vanilla, fruite rasberry jam evporate milk",
-    price: 100,
-  },
-  {
-    id: 3,
-    name: "Party Cake",
-    img: "https://via.placeholder.com/120",
-    discription: "Chocolate puding, vanilla, fruite rasberry jam evporate milk",
-    price: 20.5,
-  },
-  {
-    id: 4,
-    name: "Yumm Cake",
-    img: "https://via.placeholder.com/120",
-    discription: "Chocolate puding, vanilla, fruite rasberry jam evporate milk",
-    price: 30,
-  },
-];
+import { getMenu } from "../services/menuService";
 
 const MenuContents = ({ addCartItem }) => {
-  const [menu, setMenu] = useState(defaultMenu);
+  const [menu, setMenu] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await getMenu();
+      setMenu(data);
+    })();
+  }, []);
 
   const handlePrice = (count, price) => price * count;
 
   const calculateCountUpdate = (item, calCount) => {
-    const matchedIndx =  menu.findIndex((data) => data.id === item.id);
+    const matchedIndx = menu.findIndex((data) => data.id === item.id);
     const updatedItem = {
       ...item,
       count: calCount,
@@ -46,25 +23,28 @@ const MenuContents = ({ addCartItem }) => {
     const updateMenu = [...menu];
     updateMenu[matchedIndx] = updatedItem;
     setMenu(updateMenu);
-    addCartItem({...updatedItem, price: handlePrice(calCount, updatedItem.price)});
+    addCartItem({
+      ...updatedItem,
+      price: handlePrice(calCount, updatedItem.price),
+    });
   };
 
   const onDecrease = (item) => {
     const { count: itemCount } = item;
-    calculateCountUpdate(item, itemCount > 0 ? (itemCount - 1) : 0);
+    calculateCountUpdate(item, itemCount > 0 ? itemCount - 1 : 0);
   };
 
   const onIncrease = (item) => {
     const { count: itemCount } = item;
-    calculateCountUpdate(item, itemCount ? (itemCount + 1) : 1 );
+    calculateCountUpdate(item, itemCount ? itemCount + 1 : 1);
   };
 
   const addToCart = (item) => {
-    onIncrease(item)
+    onIncrease(item);
   };
 
   const itemInput = (item) => {
-    const {count} = item;
+    const { count } = item;
     return (
       <div className="number-input">
         <button onClick={() => onDecrease(item)}>-</button>
@@ -88,7 +68,7 @@ const MenuContents = ({ addCartItem }) => {
                 {menu.map((item) => (
                   <div key={item.id} className="discover_item">
                     <img
-                      src={item.img}
+                      src={item.image}
                       alt={item.name}
                       className="menu-item-image"
                     />
