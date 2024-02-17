@@ -15,6 +15,8 @@ const DELETED = "deleted";
 const UPDATED = "updated";
 const ADDED = "added";
 const ERROR = 'error';
+const IMAGE_UPLOADED = 'uploaded';
+const IMAGE_UPLOADING = 'uploading';
 
 const Dashboard = () => {
   const [isSideNavOpen, setisSideNavOpen] = useState(false);
@@ -34,6 +36,14 @@ const Dashboard = () => {
       }
       case ADDED: {
         toast.success("Item added successfully");
+        break;
+      }
+      case IMAGE_UPLOADING: {
+        toast.info("Uploading...");
+        break;
+      }
+      case IMAGE_UPLOADED: {
+        toast.success("Image Uploaded successfully");
         break;
       }
       case ERROR: {

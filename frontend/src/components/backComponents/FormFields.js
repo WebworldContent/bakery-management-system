@@ -2,15 +2,7 @@ import React from "react";
 import { IKContext, IKUpload } from 'imagekitio-react';
 import { authenticator, publicKey, urlEndpoint } from "./services/imageAuth";
 
-const onError = err => {
-  console.log("Error", err);
-};
-
-const onSuccess = res => {
-  console.log("Success", res);
-};
-
-const FormFields = ({item, onChange}) => {
+const FormFields = ({item, onChange, onImageSuccess, onImageError, onImageProgress}) => {
   return (
     <>
       <label for="image" className="img-upload-label">
@@ -23,9 +15,10 @@ const FormFields = ({item, onChange}) => {
         authenticator={authenticator}
       >
         <IKUpload
-          fileName="test-upload.png"
-          onError={onError}
-          onSuccess={onSuccess}
+          fileName="image.png"
+          onError={onImageError}
+          onSuccess={onImageSuccess}
+          onUploadProgress={onImageProgress}
         />
       </IKContext>
       </div>
