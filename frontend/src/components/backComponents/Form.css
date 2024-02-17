@@ -66,6 +66,12 @@ button:hover {
     background-color: #2980b9;
 }
 
+button:disabled {
+    background-color: #c3e4fa;
+    color: #6a6a6a;
+    cursor: not-allowed;
+}
+
 @media (max-width: 600px) {
     form {
         max-width: 100%;

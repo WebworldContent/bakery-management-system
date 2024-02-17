@@ -1,11 +1,11 @@
 import conn from "../config/db.js";
 
 const createData = async (data) => {
-  const { name, price, description } = data;
+  const { name, price, description, image } = data;
   try {
     return await conn((connection) =>
       connection.execute(
-        `insert into menu (name, price, description, image) values('${name}', ${price}, '${description}', '')`
+        `insert into menu (name, price, description, image) values('${name}', ${price}, '${description || ''}', '${image || ''}')`
       )
     );
   } catch (err) {

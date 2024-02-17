@@ -14,13 +14,20 @@ const Form = ({ setNotify }) => {
   const onImageSuccess = (res) => {
     setNotify("uploaded");
     console.log("Success", res);
+    const { url } = res;
+    setItem((item) => ({...item, "image": url}));
   };
 
   const onImageProgress = (res) => {
-    const {loaded, total} = res;
+    const { loaded, total } = res;
     console.log(total - loaded);
     setNotify("uploading");
-  }
+  };
+
+  const isValidData = () => {
+    const {name, price, image} = item;
+    return !!name && !!price && !!image;
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,7 +60,7 @@ const Form = ({ setNotify }) => {
           onImageError={onImageError}
           onImageProgress={onImageProgress}
         />
-        <button type="submit">Add Item</button>
+        <button type="submit" disabled={!isValidData()}>Add Item</button>
       </form>
     </section>
   );

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { IKContext, IKUpload } from 'imagekitio-react';
 import { authenticator, publicKey, urlEndpoint } from "./services/imageAuth";
 
 const FormFields = ({item, onChange, onImageSuccess, onImageError, onImageProgress}) => {
+  const [imageUploaded, setImageUploaded] = useState(false);
   return (
     <>
       <label for="image" className="img-upload-label">
         Upload Image
       </label>
-      <div className="file-input-container">
+      {imageUploaded ? (<p style={{color: "green"}}>Image Uploaded!</p>) : (<div className="file-input-container">
       <IKContext
         urlEndpoint={urlEndpoint}
         publicKey={publicKey}
@@ -17,11 +18,15 @@ const FormFields = ({item, onChange, onImageSuccess, onImageError, onImageProgre
         <IKUpload
           fileName="image.png"
           onError={onImageError}
-          onSuccess={onImageSuccess}
+          onSuccess={(res) => {
+            onImageSuccess(res);
+            setImageUploaded(true);
+          }}
           onUploadProgress={onImageProgress}
         />
       </IKContext>
       </div>
+      )}
 
       <label for="name">Name</label>
       <input
@@ -51,7 +56,6 @@ const FormFields = ({item, onChange, onImageSuccess, onImageError, onImageProgre
         name="description"
         value={item.description || ""}
         onChange={onChange}
-        required
       ></textarea>
     </>
   );
