@@ -11,21 +11,21 @@ const Home = () => {
   const [refer, setRefer] = useState(null);
 
   const getRef = (refer) => {
-    setRefer(refer)
-  }
+    setRefer(refer);
+  };
 
   return (
-      <>
+    <>
       <div className="hero_area">
-        <HeaderSection/>
-        <LandingSection refer={refer}/>
+        <HeaderSection />
+        <LandingSection refer={refer} />
       </div>
-      <ProductSection getRef={getRef}/>
-      <AboutSection/>
-      <ContactSection/>
-      <SocialFooter/>
-      </>
-    );
+      <ProductSection getRef={getRef} />
+      <AboutSection />
+      <ContactSection />
+      <SocialFooter />
+    </>
+  );
 };
 
 export default Home;
