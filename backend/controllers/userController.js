@@ -1,4 +1,4 @@
-import { addData, getOneData } from "../models/userModal.js";
+import { addData, getOneData } from "../models/userModel.js";
 import bcrypt from "bcrypt";
 
 const hashPassword = async (password) => {

@@ -1,20 +1,74 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import MenuBanner from "../components/frontComponents/MenuBanner";
 import MenuContents from "../components/frontComponents/MenuContents";
 import HeaderSection from "../components/frontComponents/HeaderSection";
+import userContext from "../components/contextAPI/userContext";
+import {
+  addCart,
+  getCart,
+  updateCart,
+} from "../components/services/cartService";
 
 const Menu = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const {
+    userAuth: { userId },
+  } = useContext(userContext);
 
   const calculateTotalPrice = useCallback(() => {
-    const price = cart.reduce((accumulator, currPrice) => accumulator + currPrice.price, 0);
+    const price = cart.reduce(
+      (accumulator, currPrice) => accumulator + currPrice.price,
+      0
+    );
     setTotalPrice(price.toFixed(2));
   }, [cart]);
 
   useEffect(() => {
     calculateTotalPrice();
   }, [calculateTotalPrice]);
+
+  useEffect(() => {
+    const updateUserCart = async () => {
+      try {
+        const updatedCart = cart.map((data) => ({ ...data, user_id: userId }));
+        await updateCart(updatedCart);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const addUserCart = async () => {
+      try {
+        if (cart.length) {
+          await addCart(cart);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getUserCart = async () => {
+      try {
+        const cartData = await getCart(userId);
+        console.log(cartData);
+        return cartData;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (userId) {
+      (async () => {
+        const { cart: userCart } = await getUserCart();
+        if (userCart.length > 0) {
+          updateUserCart();
+          return;
+        }
+        addUserCart();
+      })();
+    }
+  }, [cart, userId]);
 
   const addCartItem = (item) => {
     const foundItemIdx = cart.findIndex((cartItem) => cartItem.id === item.id);
@@ -33,7 +87,7 @@ const Menu = () => {
     <>
       <div className="sub_page">
         <div className="hero_area">
-          <HeaderSection cart={cart} cartPrice={totalPrice}/>
+          <HeaderSection cart={cart} cartPrice={totalPrice} />
         </div>
       </div>
       <MenuBanner />

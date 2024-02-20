@@ -3,6 +3,7 @@ import cors from "cors";
 import menuRoute from "./routes/menuRoute.js";
 import imgAuthRoute from "./routes/imageAuthRoute.js";
 import userRoute from "./routes/userRoute.js";
+import cartRoute from "./routes/cartRoute.js";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -19,6 +20,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(cartRoute);
 app.use(userRoute);
 app.use("/admin", menuRoute);
 
