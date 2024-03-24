@@ -8,13 +8,21 @@ import {
   getCart,
   updateCart,
 } from "../components/services/cartService";
+import { useNavigate } from "react-router-dom";
+import { useLocalStore } from "../components/customHooks/localStore";
 
 const Menu = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
+  const [, getItem] = useLocalStore("userData");
   const {
     userAuth: { userId },
   } = useContext(userContext);
+
+  const { userId: localUserId = '' } = getItem();
+
+  const avaiableUserId = userId || localUserId;
 
   const calculateTotalPrice = useCallback(() => {
     const price = cart.reduce(
@@ -29,58 +37,64 @@ const Menu = () => {
   }, [calculateTotalPrice]);
 
   useEffect(() => {
-    const updateUserCart = async () => {
-      try {
-        const updatedCart = cart.map((data) => ({ ...data, user_id: userId }));
-        await updateCart(updatedCart);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const addUserCart = async () => {
-      try {
-        if (cart.length) {
-          await addCart(cart);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     const getUserCart = async () => {
       try {
-        const cartData = await getCart(userId);
-        console.log(cartData);
+        const cartData = await getCart(avaiableUserId);
+        // console.log(cartData);
         return cartData;
       } catch (error) {
         console.log(error);
       }
     };
 
-    if (userId) {
-      (async () => {
-        const { cart: userCart } = await getUserCart();
-        if (userCart.length > 0) {
-          updateUserCart();
-          return;
-        }
-        addUserCart();
-      })();
+    if (avaiableUserId) {
+      getUserCart();
     }
-  }, [cart, userId]);
+  }, [cart, avaiableUserId, navigate]);
+
+  const addUserCart = useCallback(
+    async (item) => {
+      try {
+        const updatedCart = { ...item, user_id: avaiableUserId };
+        await addCart(updatedCart);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [avaiableUserId]
+  );
+
+  const updateUserCart = useCallback(
+    async (item) => {
+      try {
+        const updatedCart = { ...item, user_id: avaiableUserId };
+        await updateCart(updatedCart);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [avaiableUserId]
+  );
 
   const addCartItem = (item) => {
-    const foundItemIdx = cart.findIndex((cartItem) => cartItem.id === item.id);
-
-    if (foundItemIdx === -1) {
-      setCart((prevItems) => [...prevItems, item]);
-    } else {
-      const updatedCart = [...cart];
-      updatedCart[foundItemIdx] = item;
-      setCart(updatedCart);
+    if (avaiableUserId) {
+      const foundItemIdx = cart.findIndex(
+        (cartItem) => cartItem.id === item.id
+      );
+      console.log(item);
+      if (foundItemIdx === -1) {
+        setCart((prevItems) => [...prevItems, item]);
+        addUserCart(item);
+      } else {
+        const updatedCart = [...cart];
+        updatedCart[foundItemIdx] = item;
+        setCart(updatedCart);
+        updateUserCart(item);
+      }
+      calculateTotalPrice();
+      return;
     }
-    calculateTotalPrice();
+    navigate("/login");
   };
 
   return (

@@ -1,12 +1,17 @@
-import { addCartItems, getCartItem, updateCartItems } from "../models/cartModel.js";
+import {
+  addCartItems,
+  getCartItem,
+  updateCartItems,
+} from "../models/cartModel.js";
 
 const updateCart = async (req, res) => {
   try {
-    const cart = [...req.body];
-    return await updateCartItems(cart);
+    const cart = { ...req.body };
+    await updateCartItems(cart);
+    res.status(200).send({ status: "successfull" });
   } catch (error) {
     console.log(error);
-    throw error;
+    res.status(500).send({ status: "fail" });
   }
 };
 
@@ -25,7 +30,7 @@ const getCart = async (req, res) => {
   try {
     const { userId } = req.params;
     const response = await getCartItem(userId);
-    res.status(200).send({ status: "successfull", cart: response});
+    res.status(200).send({ status: "successfull", cart: response });
   } catch (error) {
     console.log(error);
     res.status(500).send({ status: "fail" });

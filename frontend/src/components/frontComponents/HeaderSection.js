@@ -2,10 +2,12 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import userContext from "../contextAPI/userContext";
+import { useLocalStore } from "../customHooks/localStore";
 
 const HeaderSection = ({ cart = [], cartPrice = 0 }) => {
   const [openCart, setOpenCart] = useState(false);
   const { userAuth, setUserAuth } = useContext(userContext);
+  const [, getItem, deleteItem] = useLocalStore('userData');
 
   return (
     <header className="header_section">
@@ -53,7 +55,7 @@ const HeaderSection = ({ cart = [], cartPrice = 0 }) => {
                     </span>
                   </div>
                 </li>
-                {!Object.keys(userAuth).length ? (
+                {(!Object.keys(userAuth).length) && (!Object.keys(getItem()).length) ? (
                   <>
                     <li className="nav-item active">
                       <Link className="nav-link" to={"/Login"}>
@@ -69,7 +71,8 @@ const HeaderSection = ({ cart = [], cartPrice = 0 }) => {
                 ) : (
                   <li className="nav-item active">
                     <Link className="nav-link" onClick={() => {
-                      console.log('somethjiong'); setUserAuth({})
+                      setUserAuth({});
+                      deleteItem();
                     }}>
                       Sign out <span className="sr-only">(current)</span>
                     </Link>

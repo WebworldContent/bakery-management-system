@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../components/services/userService";
 
 import userContext from "../components/contextAPI/userContext";
+import { useLocalStore } from "../components/customHooks/localStore";
 
 const Login = () => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const [setItem] = useLocalStore('userData');
 
   const { setUserAuth } = useContext(userContext);
 
@@ -30,6 +32,7 @@ const Login = () => {
         navigate("/login");
       }
       setUserAuth({ email, userId });
+      setItem({email, userId});
       navigate("/");
     } catch (error) {
       console.log(error);

@@ -13,7 +13,7 @@ const addCart = async (data) => {
 const updateCart = async (data) => {
   try {
     await axios.put("http://localhost:3001/cart", {
-      ...data,
+      ...data
     });
   } catch (error) {
     console.log(error);
