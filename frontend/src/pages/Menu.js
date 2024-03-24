@@ -76,7 +76,7 @@ const Menu = () => {
         </div>
       </div>
       <MenuBanner />
-      <MenuContents addCartItem={addCartItem} />
+      <MenuContents addCartItem={addCartItem} cart={cart} />
     </>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./MenuContents.css";
 import { getMenu } from "../services/menuService";
 
-const MenuContents = ({ addCartItem }) => {
+const MenuContents = ({ addCartItem, cart }) => {
   const [menu, setMenu] = useState([]);
 
   useEffect(() => {
@@ -44,11 +44,14 @@ const MenuContents = ({ addCartItem }) => {
   };
 
   const itemInput = (item) => {
+
+    const matchedItem = cart && cart.find((cartItem) => cartItem.id === item.id);
+    const { count: cartItemCount = 0} = (matchedItem || {});
     const { count } = item;
     return (
       <div className="number-input">
         <button onClick={() => onDecrease(item)}>-</button>
-        <input type="number" value={count || 0} readOnly />
+        <input type="number" value={( cartItemCount || count) || 0} readOnly />
         <button onClick={() => onIncrease(item)}>+</button>
       </div>
     );
