@@ -3,11 +3,7 @@ import MenuBanner from "../components/frontComponents/MenuBanner";
 import MenuContents from "../components/frontComponents/MenuContents";
 import HeaderSection from "../components/frontComponents/HeaderSection";
 import userContext from "../components/contextAPI/userContext";
-import {
-  addCart,
-  getCart,
-  updateCart,
-} from "../components/services/cartService";
+import { getCart } from "../components/services/cartService";
 import { useNavigate } from "react-router-dom";
 import { useLocalStore } from "../components/customHooks/localStore";
 
@@ -20,7 +16,7 @@ const Menu = () => {
     userAuth: { userId },
   } = useContext(userContext);
 
-  const { userId: localUserId = '' } = getItem();
+  const { userId: localUserId = "" } = getItem();
 
   const avaiableUserId = userId || localUserId;
 
@@ -39,9 +35,11 @@ const Menu = () => {
   useEffect(() => {
     const getUserCart = async () => {
       try {
-        const cartData = await getCart(avaiableUserId);
-        // console.log(cartData);
-        return cartData;
+        const { cart: userCart } = await getCart(avaiableUserId);
+        const cartInfo = userCart[0]?.cart;
+        if (cartInfo && cartInfo.length) {
+          setCart(JSON.parse(cartInfo));
+        }
       } catch (error) {
         console.log(error);
       }
@@ -50,46 +48,19 @@ const Menu = () => {
     if (avaiableUserId) {
       getUserCart();
     }
-  }, [cart, avaiableUserId, navigate]);
-
-  const addUserCart = useCallback(
-    async (item) => {
-      try {
-        const updatedCart = { ...item, user_id: avaiableUserId };
-        await addCart(updatedCart);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [avaiableUserId]
-  );
-
-  const updateUserCart = useCallback(
-    async (item) => {
-      try {
-        const updatedCart = { ...item, user_id: avaiableUserId };
-        await updateCart(updatedCart);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [avaiableUserId]
-  );
+  }, [avaiableUserId, navigate]);
 
   const addCartItem = (item) => {
     if (avaiableUserId) {
       const foundItemIdx = cart.findIndex(
         (cartItem) => cartItem.id === item.id
       );
-      console.log(item);
       if (foundItemIdx === -1) {
         setCart((prevItems) => [...prevItems, item]);
-        addUserCart(item);
       } else {
         const updatedCart = [...cart];
         updatedCart[foundItemIdx] = item;
         setCart(updatedCart);
-        updateUserCart(item);
       }
       calculateTotalPrice();
       return;

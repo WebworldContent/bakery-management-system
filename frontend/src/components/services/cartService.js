@@ -13,7 +13,7 @@ const addCart = async (data) => {
 const updateCart = async (data) => {
   try {
     await axios.put("http://localhost:3001/cart", {
-      ...data
+      ...data,
     });
   } catch (error) {
     console.log(error);
@@ -23,7 +23,7 @@ const updateCart = async (data) => {
 const getCart = async (userId) => {
   try {
     const { data } = await axios.get(`http://localhost:3001/cart/${userId}`);
-    return data;
+    return data
   } catch (error) {
     console.log(error);
   }

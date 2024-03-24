@@ -6,8 +6,9 @@ import {
 
 const updateCart = async (req, res) => {
   try {
-    const cart = { ...req.body };
-    await updateCartItems(cart);
+    const cartData = { ...req.body };
+    const {userId, cart} = cartData;
+    await updateCartItems(cart, userId);
     res.status(200).send({ status: "successfull" });
   } catch (error) {
     console.log(error);
@@ -17,8 +18,9 @@ const updateCart = async (req, res) => {
 
 const addCart = async (req, res) => {
   try {
-    const cart = { ...req.body };
-    await addCartItems(cart);
+    const cartData = { ...req.body };
+    const {userId, cart} = cartData;
+    await addCartItems(cart, userId);
     res.status(200).send({ status: "successfull" });
   } catch (error) {
     console.log(error);

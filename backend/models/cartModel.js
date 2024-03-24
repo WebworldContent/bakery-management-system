@@ -1,11 +1,10 @@
 import conn from "../config/db.js";
 
-const updateCartItems = async (data) => {
-  const { price, count, user_id, id: item_id } = data;
+const updateCartItems = async (cart, userId) => {
   try {
     return await conn((connection) =>
       connection.execute(
-        `update carts set price=${price}, count=${count} where item_id=${item_id} and user_id=${user_id}`
+        `update cart set cart='${JSON.stringify(cart)}' where user_id=${userId}`
       )
     );
   } catch (err) {
@@ -14,12 +13,12 @@ const updateCartItems = async (data) => {
   }
 };
 
-const addCartItems = async (data) => {
-  const { name, price, image, count, user_id, id: item_id } = data;
+const addCartItems = async (cart, userId) => {
+  console.log('cart data', cart);
   try {
     return await conn((connection) =>
       connection.execute(
-        `insert into carts (user_id, name, price, count, image, item_id) values(${user_id}, '${name}', ${price}, ${count}, '${image}', ${item_id})`
+        `insert into cart (user_id, cart) values(${userId}, '${JSON.stringify(cart)}')`
       )
     );
   } catch (err) {
@@ -31,7 +30,7 @@ const addCartItems = async (data) => {
 const getCartItem = async (userId) => {
   try {
     const [rows, fields] = await conn((connection) =>
-      connection.execute(`select * from carts where user_id = ${userId}`)
+      connection.execute(`select * from cart where user_id = ${userId}`)
     );
     return rows;
   } catch (err) {
