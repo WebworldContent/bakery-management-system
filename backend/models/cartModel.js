@@ -14,7 +14,6 @@ const updateCartItems = async (cart, userId) => {
 };
 
 const addCartItems = async (cart, userId) => {
-  console.log('cart data', cart);
   try {
     return await conn((connection) =>
       connection.execute(

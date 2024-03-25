@@ -778,4 +778,11 @@ a:focus {
   background: #45a049;
 }
 
+.contact-form .form-error {
+  color: #bb3d1c;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
 /*# sourceMappingURL=style.css.map */

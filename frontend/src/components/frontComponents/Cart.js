@@ -17,7 +17,6 @@ const Cart = ({ showModal, closeModal, cart, cartPrice }) => {
   const addUserCart = useCallback(
     async (item) => {
       try {
-        console.log(item);
         const updatedCart = { cart: item, userId: avaiableUserId };
         await addCart(updatedCart);
       } catch (error) {
